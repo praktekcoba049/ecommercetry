@@ -56,10 +56,9 @@
                                     <option value=1>Sold</option>
                                 </select>
 								</div>
-								
 								<div class="form-group">
 									<button type="sumbit" name="selesai" class="btn btn-lg btn-success" style="width:49%;"><span class="glyphicon glyphicon-ok-sign"></span> Selesai</button>
-									<a href="../index.php" class="btn btn-lg btn-danger" style="width:49%;"><span class="glyphicon glyphicon-remove-sign"></span> Kembali</a>
+									<a href="./domba.php" class="btn btn-lg btn-danger" style="width:49%;"><span class="glyphicon glyphicon-remove-sign"></span> Kembali</a>
 								</div>
 							</form>
 						</div>

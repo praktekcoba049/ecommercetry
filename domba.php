@@ -6,7 +6,7 @@ require_once 'config/database.php';
 $query = "SELECT A.ID_DOMBA,B.JENIS_DOMBA,A.JENIS_KELAMIN,A.HARGA,A.BERAT,A.STATUS_DOMBA
  FROM domba A join jenis_domba B 
  ON A.ID_JENIS=B.ID_JENIS
- ORDER BY harga ASC LIMIT 0, 10";
+ ORDER BY harga ASC LIMIT 0, 99";
 $sql = mysqli_query($db, $query);
 ?>
 
@@ -47,8 +47,8 @@ $sql = mysqli_query($db, $query);
      
       <ul class="nav navbar-nav navbar-right">
 	  <li><a href="./domba.php">Data Domba</a></li>
+	  <li><a href="./pegawai.php">Data Pegawai</a></li>
 	  <li><a href="./domba.php">Data Pelanggan</a></li>
-	  <li><a href="./domba.php">Data Pegawai</a></li>
 
       </ul>
     </div><!-- /.navbar-collapse -->
