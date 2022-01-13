@@ -10,11 +10,19 @@
 		group by ID_JENIS
 		order by HARGA DESC
 		";
-
-
-
+		
+		$query2 = "
+		SELECT b.JENIS_DOMBA AS JENIS_DOMBA,
+    count(*) AS TOTAL_DOMBA,
+    sum(case when STATUS_DOMBA = 1 then 1 else 0 end) AS TERJUAL,
+    sum(case when STATUS_DOMBA = 0 then 1 else 0 end) AS BELUM_TERJUAL
+    FROM domba a inner join jenis_domba b
+    ON a.ID_JENIS = b.ID_JENIS
+    GROUP BY a.ID_JENIS
+		";
 
 		$sql1 = mysqli_query($db, $query1);
+		$sql2 = mysqli_query($db, $query2);
 		?>
 
 
@@ -75,10 +83,11 @@
   <table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>Jenis_Domba</th>
+								<th>Jenis_Domba</th>
 									<th>Harga Tertinggi</th>
 									<th>Harga Terendah</th>
 									<th>Rata-Rata</th>
+									
 								</tr>
 							</thead>
 							<tbody>
@@ -93,6 +102,32 @@
 							</tbody>
 						</table>
  				 </div>
+				  <div class="panel-heading"><h4 style="text-align:center">INFO STOK</h4></div>
+  <div class="panel-body">
+  <table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Jenis_Domba</th>
+									<th>Total_Domba</th>
+									<th>Terjual</th>
+									<th>Belum Terjual</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php foreach ($sql2 as $member2) : ?>
+								<tr>
+									<td><?php echo $member2['JENIS_DOMBA']; ?></td>
+									<td><?php echo $member2['TOTAL_DOMBA']; ?></td>
+									<td><?php echo $member2['TERJUAL']; ?></td>
+									<td><?php echo $member2['BELUM_TERJUAL']; ?></td>									
+								</tr>
+							<?php endforeach; ?>
+							</tbody>
+						</table>
+ 				 </div>
+
+
+
 			 </div>	
 		</div>
         <p>
