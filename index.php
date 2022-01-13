@@ -49,13 +49,31 @@ $sql = mysqli_query($db, $query);
 								<tr>
 									<td><?php echo $member['ID_DOMBA']; ?></td>
 									<td><?php echo $member['JENIS_DOMBA']; ?></td>
-									<td><?php echo $member['JENIS_KELAMIN']; ?></td>
+									<td><?php $member['JENIS_KELAMIN'];
+									if($member['JENIS_KELAMIN']==1){
+										echo "Betina";
+									}
+									else {
+										echo "Jantan";
+									}
+									
+									?></td>
 									<td><?php echo $member['HARGA']; ?></td>
 									<td><?php echo $member['BERAT']; ?></td>
-									<td><?php echo $member['STATUS_DOMBA']; ?></td>
+									<td><?php $member['STATUS_DOMBA'];
+									if($member['STATUS_DOMBA']==1){
+										echo "Hidup";
+									}
+									else {
+										echo "non-Hidup / Curah";
+									}
+
+									?></td>
 									<td>
-										<a href="pages/edit_domba.php?id=<?php echo $member['ID_DOMBA']; ?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
-										<a href="process/hapus_proses.php?id=<?php echo $member['ID_DOMBA']; ?>" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"> Hapus</span></a>
+										<a href="pages/edit_domba.php?id=<?php echo $member['ID_DOMBA']; ?>
+										" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
+										<a href="process/hapus_domba_proses.php?id=<?php echo $member['ID_DOMBA']; ?>
+										" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"> Hapus</span></a>
 									</td>
 								</tr>
 							<?php endforeach; ?>

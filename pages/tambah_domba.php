@@ -20,35 +20,41 @@
 							<h3 class="text-center">Tambah domba</h3><hr>
 							<form role="form" action="../process/tambah_domba_proses.php" method="post">
 								<div class="form-group">
-									<select name="id_jenis" id="id_jenis">
-  <option disabled selected> Pilih Jenis Domba</option>
-<?php
-        include "dbConn.php";  // Using database connection file here
-        $records = mysqli_query($db, "SELECT ID_JENIS From jenis_domba");  // Use select query here 
+								<label for="">Jenis Domba</label>
+								  <select name="id_jenis" id="id_jenis" class="form-control">
+  									<option disabled selected> Pilih Jenis Domba</option>
+										<?php
+       									 $records = mysqli_query($db, "SELECT * From jenis_domba");  // Use select query here 
 
-        while($data = mysqli_fetch_array($records))
-        {
-            echo "<option value='". $data['ID_JENIS'] ."'>" .$data['ID_JENIS'] ."</option>";  // displaying data in option menu
-        }	
-    ?>  
- 
-  </select>
+        							    while($data = mysqli_fetch_array($records))
+       										 {
+           								 echo "<option value='". $data['ID_JENIS'] ."'>" .$data['JENIS_DOMBA'] ."</option>";  // displaying data in option menu
+      										  }	?>  
+								    </select>
 								</div>
 								<div class="form-group">
-									<label for="jeniskelamin">Jenis Kelamin</label>
-									<input type="number" name="jeniskelamin" class="form-control" id="jeniskelamin">
+								<label for="">Jenis Kelamin</label>
+                                <select name="jeniskelamin" class="form-control" id="jeniskelamin">
+                                    <option value="">--Select Kelamin--</option>
+                                    <option value=0>Jantan</option>
+                                    <option value=1>Betina</option>
+                                </select>
 								</div>
 								<div class="form-group">
 									<label for="hargadomba">Harga Domba</label>
 									<input type="number" name="hargadomba" class="form-control" id="hargadomba">
 								</div>
 								<div class="form-group">
-									<label for="beratdomba">berat domba</label>
+									<label for="beratdomba">Berat domba</label>
 									<input type="number" name="beratdomba" class="form-control" id="beratdomba">
 								</div>
 								<div class="form-group">
-									<label for="statusdomba">status domba</label>
-									<input type="number" name="statusdomba" class="form-control" id="statusdomba">
+									<label for="statusdomba">Status Domba</label>
+									 <select name="statusdomba" class="form-control" id="statusdomba">
+                                    <option value="">--Pilih Status--</option>
+                                    <option value=0>Curah / non-Hidup</option>
+                                    <option value=1>Hidup</option>
+                                </select>
 								</div>
 								
 								<div class="form-group">
