@@ -24,11 +24,11 @@
 								  <select name="id_jenis" id="id_jenis" class="form-control">
   									<option disabled selected> Pilih Jenis Domba</option>
 										<?php
-       									 $records = mysqli_query($db, "SELECT * From jenis_domba");  // Use select query here 
+       									 $records = mysqli_query($db, "SELECT * From jenis_domba WHERE 1");  // Use select query here 
 
         							    while($data = mysqli_fetch_array($records))
        										 {
-           								 echo "<option value='". $data['ID_JENIS'] ."'>" .$data['JENIS_DOMBA'] ."</option>";  // displaying data in option menu
+           								 echo "<option value='". $data['ID_JENIS'] ."'>" . $data['JENIS_DOMBA'] ."</option>";  // displaying data in option menu
       										  }	?>  
 								    </select>
 								</div>
@@ -52,8 +52,8 @@
 									<label for="statusdomba">Status Domba</label>
 									 <select name="statusdomba" class="form-control" id="statusdomba">
                                     <option value="">--Pilih Status--</option>
-                                    <option value=0>Curah / non-Hidup</option>
-                                    <option value=1>Hidup</option>
+                                    <option value=0>Ready</option>
+                                    <option value=1>Sold</option>
                                 </select>
 								</div>
 								
