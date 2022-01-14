@@ -3,10 +3,25 @@
 require_once 'config/database.php';
 
 // ambil data dari database
-$query = "SELECT A.ID_DOMBA,B.JENIS_DOMBA,A.JENIS_KELAMIN,A.HARGA,A.BERAT,A.STATUS_DOMBA
- FROM domba A join jenis_domba B 
- ON A.ID_JENIS=B.ID_JENIS
- ORDER BY harga ASC LIMIT 0, 99";
+$query = "
+SELECT 
+A.ID_PEMESANAN,
+B.NAMA_PEGAWAI,
+A.ID_KOTA,
+A.NAMA_PENERIMA,
+A.ALAMAT_PENERIMA,	
+A.KODE_POS_PENERIMA,
+A.JASA_KURIR,	
+A.LAYANAN_KURIR,	
+A.TGL_PESAN,			
+A.JENIS_BAYAR,		
+A.ONGKOS_KIRIM,		
+A.TOTAL_HARGA,	   
+A.STATUS_TRANSAKSI
+from pemesanan A INNER JOIN pegawai B
+ON A.ID_PEGAWAI=B.ID_PEGAWAI
+GROUP BY A.ID_PEMESANAN
+";
 $sql = mysqli_query($db, $query);
 ?>
 
@@ -59,53 +74,52 @@ $sql = mysqli_query($db, $query);
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="text-center">
-						<h3>Data domba SIB2 grup</h3><hr>
+						<h3>Data Pemesanan SIB2 grup</h3><hr>
 						<p style="padding:10pt 0pt 0pt 10pt;">
-							<a href="pages/tambah_domba.php" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span> Tambah domba</a>
+							<a href="pages/tambah_domba.php" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span> TEST </a>
 						</p>
 					</div>
 					<div class="table-responsive">
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>ID_Domba</th>
-									<th>Jenis_Domba</th>
-									<th>Jenis_kelamin</th>
-									<th>Harga</th>
-									<th>Berat</th>
-									<th>Status</th>
+									<th>ID Pemesanan</th>
+									<th>Nama Pegawai</th>
+									<th>ID Kota</th>
+									<th>Nama Penerima</th>
+									<th>Alamat penerima</th>
+									<th>Kode Pos Penerima</th>
+									<th>Jasa Kurir</th>
+									<th>Layanan Kurir</th>
+									<th>Tanggal Pesan</th>
+									<th>Metode Bayar</th>
+									<th>Ongkos Kirim</th>
+									<th>Total Harga</th>
+									<th>Status Transaksi</th>
 									<th>Aksi</th>
+
 								</tr>
 							</thead>
 							<tbody>
 							<?php foreach ($sql as $member) : ?>
 								<tr>
-									<td><?php echo $member['ID_DOMBA']; ?></td>
-									<td><?php echo $member['JENIS_DOMBA']; ?></td>
-									<td><?php $member['JENIS_KELAMIN'];
-									if($member['JENIS_KELAMIN']==1){
-										echo "Betina";
-									}
-									else {
-										echo "Jantan";
-									}
-									
-									?></td>
-									<td><?php echo $member['HARGA']; ?></td>
-									<td><?php echo $member['BERAT']; ?></td>
-									<td><?php $member['STATUS_DOMBA'];
-									if($member['STATUS_DOMBA']==1){
-										echo "Sold";
-									}
-									else {
-										echo "Ready";
-									}
-
-									?></td>
+									<td><?php echo $member['ID_PEMESANAN']; ?></td>
+									<td><?php echo $member['NAMA_PEGAWAI']; ?></td>		
+									<td><?php echo $member['ID_KOTA']; ?></td>
+									<td><?php echo $member['NAMA_PENERIMA']; ?></td>
+									<td><?php echo $member['ALAMAT_PENERIMA']; ?></td>
+									<td><?php echo $member['KODE_POS_PENERIMA']; ?></td>		
+									<td><?php echo $member['JASA_KURIR']; ?></td>
+									<td><?php echo $member['LAYANAN_KURIR']; ?></td>
+									<td><?php echo $member['TGL_PESAN']; ?></td>
+									<td><?php echo $member['JENIS_BAYAR']; ?></td>		
+									<td><?php echo $member['ONGKOS_KIRIM']; ?></td>
+									<td><?php echo $member['TOTAL_HARGA']; ?></td>
+									<td><?php echo $member['STATUS_TRANSAKSI']; ?></td>
 									<td>
-										<a href="pages/edit_domba.php?id=<?php echo $member['ID_DOMBA']; ?>
+										<a href="pages/edit_domba.php?id=<?php echo $member['ID_PEMESANAN']; ?>
 										" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
-										<a href="process/hapus_domba_proses.php?id=<?php echo $member['ID_DOMBA']; ?>
+										<a href="process/hapus_domba_proses.php?id=<?php echo $member['ID_PEMESANAN']; ?>
 										" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"> Hapus</span></a>
 									</td>
 								</tr>
