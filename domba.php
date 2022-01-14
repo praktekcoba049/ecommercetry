@@ -32,7 +32,7 @@ $sql = mysqli_query($db, $query);
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">PBD-SIB2</a>
+      <a class="navbar-brand" href="#">PBD-SIB2 (Admin)</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

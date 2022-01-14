@@ -55,15 +55,15 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="./">Dashboard<span class="sr-only">(current)</span></a></li>
-		<li><a href="./domba.php">Data Pemesanan</a></li>
-		<li><a href="./domba.php">Data Pembayaran</a></li>
-        <li><a href="./domba.php">Data Pengiriman</a></li>
+		<li><a href="./pemesanan.php">Data Pemesanan</a></li>
+		<li><a href="./pembayaran.php">Data Pembayaran</a></li>
+        <li><a href="./pengiriman.php">Data Pengiriman</a></li>
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
 	  <li><a href="./domba.php">Data Domba</a></li>
 	  <li><a href="./pegawai.php">Data Pegawai</a></li>
-	  <li><a href="./domba.php">Data Pelanggan</a></li>
+	  <li><a href="./pelanggan.php">Data Pelanggan</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
@@ -71,8 +71,8 @@
 	</div>
 		<div class="container">
 
-		<div class="column">
-  <div class="col-sm-6 col-md-4" style="width:600px;">
+		<div class="column" style="width:auto; margin:auto;" >
+  <div class="col-sm-6 col-md-4" style="width:600px; ">
     <div class="thumbnail">
       <img src="./branding/client-1.jpg" alt="logos" style="width:90%; height:80%;">
       <div class="caption">
@@ -132,7 +132,7 @@
 		</div>
         <p>
 		</p>
-        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+        <p><a href="./domba.php" class="btn btn-primary" role="button">Data Domba</a> <a href="#" class="btn btn-default" role="button">TEST</a></p>
       </div>
     </div>
   </div>

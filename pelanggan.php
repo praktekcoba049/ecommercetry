@@ -1,12 +1,12 @@
 <?php
 // panggil koneksi ke database
-require_once './../config/database.php';
+require_once 'config/database.php';
 
 // ambil data dari database
 $query = "SELECT A.ID_DOMBA,B.JENIS_DOMBA,A.JENIS_KELAMIN,A.HARGA,A.BERAT,A.STATUS_DOMBA
  FROM domba A join jenis_domba B 
  ON A.ID_JENIS=B.ID_JENIS
- ORDER BY harga ASC LIMIT 0, 10";
+ ORDER BY harga ASC LIMIT 0, 99";
 $sql = mysqli_query($db, $query);
 ?>
 
@@ -15,7 +15,7 @@ $sql = mysqli_query($db, $query);
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" type="text/css" href="../asset/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
 
 		<title>Data Domba</title>
 	</head>
@@ -32,23 +32,27 @@ $sql = mysqli_query($db, $query);
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/ternakdombaV3/index.php">PBD-SIB2</a>
+      <a class="navbar-brand" href="#">PBD-SIB2 (Admin)</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li class="active"><a href="./">Dashboard<span class="sr-only">(current)</span></a></li>
+		<li><a href="./pemesanan.php">Data Pemesanan</a></li>
+		<li><a href="./pembayaran.php">Data Pembayaran</a></li>
+        <li><a href="./pengiriman.php">Data Pengiriman</a></li>
+
       </ul>
-      
+     
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
-        
+	  <li><a href="./domba.php">Data Domba</a></li>
+	  <li><a href="./pegawai.php">Data Pegawai</a></li>
+	  <li><a href="./pelanggan.php">Data Pelanggan</a></li>
+
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
-</nav>
 </nav>	
 	</div>
 		<div class="container">
