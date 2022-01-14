@@ -17,49 +17,40 @@
 				<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" style="margin-top:10%;">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<h3 class="text-center">Tambah domba</h3><hr>
-							<form role="form" action="../process/tambah_domba_proses.php" method="post">
+							<h3 class="text-center">Tambah Pegawai</h3><hr>
+							<form role="form" action="../process/tambah_pegawai_proses.php" method="post">
 								<div class="form-group">
-								<label for="">Jenis Domba</label>
-								  <select name="id_jenis" id="id_jenis" class="form-control">
-  									<option disabled selected> Pilih Jenis Domba</option>
-										<?php
-       									 $records = mysqli_query($db, "SELECT * From jenis_domba WHERE 1");  // Use select query here 
-
-        							    while($data = mysqli_fetch_array($records))
-       										 {
-           								 echo "<option value='". $data['ID_JENIS'] ."'>" . $data['JENIS_DOMBA'] ."</option>";  // displaying data in option menu
-      										  }	?>  
-								    </select>
+								<label for="">Nama Pegawai</label>
+								<input type="text" name="nama_pegawai" class="form-control" id="nama_pegawai">
 								</div>
 								<div class="form-group">
-								<label for="">Jenis Kelamin</label>
-                                <select name="jeniskelamin" class="form-control" id="jeniskelamin">
-                                    <option value="">--Select Kelamin--</option>
-                                    <option value=0>Jantan</option>
-                                    <option value=1>Betina</option>
-                                </select>
+								<label for="">Alamat Pegawai</label>
+								<input type="text" name="alamat_pegawai" class="form-control" id="alamat_pegawai">
 								</div>
 								<div class="form-group">
-									<label for="hargadomba">Harga Domba</label>
-									<input type="number" name="hargadomba" class="form-control" id="hargadomba">
+									<label for="">Kode Pos Pegawai</label>
+									<input type="text" name="kodepos_pegawai" class="form-control" id="kodepos_pegawai">
 								</div>
 								<div class="form-group">
-									<label for="beratdomba">Berat domba</label>
-									<input type="number" name="beratdomba" class="form-control" id="beratdomba">
+									<label for="">Username Pegawai</label>
+									<input type="text" name="user_pegawai" class="form-control" id="user_pegawai">
 								</div>
 								<div class="form-group">
-									<label for="statusdomba">Status Domba</label>
-									 <select name="statusdomba" class="form-control" id="statusdomba">
+									<label for="">Password Pegawai</label>
+									<input type="text" name="pass_pegawai" class="form-control" id="pass_pegawai">
+								</div>
+								<div class="form-group">
+									<label for="">Status Pegawai</label>
+									 <select name="status_pegawai" class="form-control" id="status_pegawai">
                                     <option value="">--Pilih Status--</option>
-                                    <option value=0>Ready</option>
-                                    <option value=1>Sold</option>
+									<option value=1>Aktif</option>
+                                    <option value=0>non-Aktif</option>
                                 </select>
 								</div>
 								
 								<div class="form-group">
 									<button type="sumbit" name="selesai" class="btn btn-lg btn-success" style="width:49%;"><span class="glyphicon glyphicon-ok-sign"></span> Selesai</button>
-									<a href="../index.php" class="btn btn-lg btn-danger" style="width:49%;"><span class="glyphicon glyphicon-remove-sign"></span> Kembali</a>
+									<a href="../pegawai.php" class="btn btn-lg btn-danger" style="width:49%;"><span class="glyphicon glyphicon-remove-sign"></span> Kembali</a>
 								</div>
 							</form>
 						</div>

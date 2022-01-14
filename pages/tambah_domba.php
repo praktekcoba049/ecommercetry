@@ -28,7 +28,7 @@
 
         							    while($data = mysqli_fetch_array($records))
        										 {
-           								 echo "<option value='". $data['ID_JENIS'] ."'>" . $data['JENIS_DOMBA'] ."</option>";  // displaying data in option menu
+           								 echo "<option value='". $data['ID_JENIS'] ."'>" . $data['JENIS_DOMBA'] ."</option>";// Nampilkan data di option menu tambah data
       										  }	?>  
 								    </select>
 								</div>

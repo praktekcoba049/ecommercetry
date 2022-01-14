@@ -1,8 +1,8 @@
 <?php // panggil koneksi ke database
 require_once '../config/database.php';
 
-$id_domba = $_GET['id'];
-$query = "SELECT * FROM domba WHERE ID_DOMBA = '$id_domba'";
+$id_pegawai = $_GET['id'];
+$query = "SELECT * FROM pegawai WHERE ID_PEGAWAI = '$id_pegawai'";
 $sql = mysqli_query($db, $query);
 $member = mysqli_fetch_assoc($sql);
 ?>
@@ -20,28 +20,28 @@ $member = mysqli_fetch_assoc($sql);
 				<div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4" style="margin-top:10%;">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<h3 class="text-center">Edit Domba</h3><hr>
-							<form role="form" action="../process/edit_domba_proses.php?id=<?php echo $member['ID_DOMBA']?>" method="post">
+							<h3 class="text-center">Edit Pegawai</h3><hr>
+							<form role="form" action="../process/edit_pegawai_proses.php?id=<?php echo $member['ID_PEGAWAI']?>" method="post">
 								
 								<div class="form-group">
-									<label for="telepon">Harga Domba</label>
-									<input type="number" name="hargadomba" class="form-control" id="hargadomba" value="<?php echo $member['HARGA']; ?>">
+									<label for="telepon">Nama Pegawai</label>
+									<input type="text" name="namepeg" class="form-control" id="namepeg" value="<?php echo $member['NAMA_PEGAWAI']; ?>">
 								</div>
 
 								<div class="form-group">
-									<label for="telepon">Berat Domba</label>
-									<input type="number" name="beratdomba" class="form-control" id="beratdomba" value="<?php echo $member['BERAT']; ?>">
+									<label for="telepon">Alamat Pegawai</label>
+									<input type="text" name="addrpeg" class="form-control" id="addrpeg" value="<?php echo $member['ALAMAT_PEGAWAI']; ?>">
 								</div>
 
 								<div class="form-group">
-									<label for="telepon">Status Domba</label>
-									<input type="number" name="statusdomba" class="form-control" id="statusdomba" value="<?php echo $member['STATUS_DOMBA']; ?>">
+									<label for="telepon">Status Pegawai</label>
+									<input type="text" name="statuspeg" class="form-control" id="statuspeg" value="<?php echo $member['STATUS_PEGAWAI']; ?>">
 								</div>
 
 
 								<div class="form-group">
 									<button type="submit" name="selesai" class="btn btn-lg btn-success" style="width:49%;"><span class="glyphicon glyphicon-ok-sign"></span> Selesai</button>
-									<a href="../index.php" class="btn btn-lg btn-danger" style="width:49%;"><span class="glyphicon glyphicon-remove-sign"></span> Kembali</a>
+									<a href="../pegawai.php" class="btn btn-lg btn-danger" style="width:49%;"><span class="glyphicon glyphicon-remove-sign"></span> Kembali</a>
 								</div>
 							</form>
 						</div>

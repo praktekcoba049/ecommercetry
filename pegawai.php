@@ -3,10 +3,14 @@
 require_once 'config/database.php';
 
 // ambil data dari database
-$query = "SELECT A.ID_DOMBA,B.JENIS_DOMBA,A.JENIS_KELAMIN,A.HARGA,A.BERAT,A.STATUS_DOMBA
- FROM domba A join jenis_domba B 
- ON A.ID_JENIS=B.ID_JENIS
- ORDER BY harga ASC LIMIT 0, 99";
+$query = "SELECT A.ID_PEGAWAI,A.NAMA_PEGAWAI,C.NAMA_JABATAN,A.ALAMAT_PEGAWAI,A.STATUS_PEGAWAI
+ FROM pegawai A 
+ INNER JOIN menjabat B 
+ ON A.ID_PEGAWAI=B.ID_PEGAWAI
+ INNER JOIN jabatan C
+ ON B.ID_JABATAN=C.ID_JABATAN
+ group by ID_PEGAWAI
+ ";
 $sql = mysqli_query($db, $query);
 ?>
 
@@ -59,54 +63,42 @@ $sql = mysqli_query($db, $query);
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="text-center">
-						<h3>Data domba SIB2 grup</h3><hr>
+						<h3>Data Pegawai SI-B2 grup</h3><hr>
 						<p style="padding:10pt 0pt 0pt 10pt;">
-							<a href="pages/tambah_domba.php" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span> Tambah domba</a>
+							<a href="pages/tambah_pegawai.php" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span> Tambah Pegawai </a>
 						</p>
 					</div>
 					<div class="table-responsive">
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>ID_Domba</th>
-									<th>Jenis_Domba</th>
-									<th>Jenis_kelamin</th>
-									<th>Harga</th>
-									<th>Berat</th>
-									<th>Status</th>
+									<th>ID_Pegawai</th>
+									<th>Nama_Pegawai</th>
+									<th>Jabatan Pegawai</th>
+									<th>Alamat Pegawai</th>
+									<th>Status Pegawai</th>
 									<th>Aksi</th>
 								</tr>
 							</thead>
 							<tbody>
 							<?php foreach ($sql as $member) : ?>
 								<tr>
-									<td><?php echo $member['ID_DOMBA']; ?></td>
-									<td><?php echo $member['JENIS_DOMBA']; ?></td>
-									<td><?php $member['JENIS_KELAMIN'];
-									if($member['JENIS_KELAMIN']==1){
-										echo "Betina";
+									<td><?php echo $member['ID_PEGAWAI']; ?></td>
+									<td><?php echo $member['NAMA_PEGAWAI']; ?></td>
+									<td><?php echo $member['NAMA_JABATAN']; ?></td>
+									<td><?php echo $member['ALAMAT_PEGAWAI']; ?></td>
+									<td><?php $member['STATUS_PEGAWAI'];
+									if($member['STATUS_PEGAWAI']==1){
+										echo "Aktif";
 									}
 									else {
-										echo "Jantan";
-									}
-									
-									?></td>
-									<td><?php echo $member['HARGA']; ?></td>
-									<td><?php echo $member['BERAT']; ?></td>
-									<td><?php $member['STATUS_DOMBA'];
-									if($member['STATUS_DOMBA']==1){
-										echo "Sold";
-									}
-									else {
-										echo "Ready";
+										echo "non-Aktif";
 									}
 
 									?></td>
 									<td>
-										<a href="pages/edit_domba.php?id=<?php echo $member['ID_DOMBA']; ?>
-										" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
-										<a href="process/hapus_domba_proses.php?id=<?php echo $member['ID_DOMBA']; ?>
-										" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"> Hapus</span></a>
+										<a href="pages/edit_pegawai.php?id=<?php echo $member['ID_PEGAWAI']; ?>
+										" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"> Edit </span></a>
 									</td>
 								</tr>
 							<?php endforeach; ?>
