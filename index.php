@@ -32,11 +32,18 @@
     ON b.ID_JABATAN=c.ID_JABATAN
    group by c.ID_JABATAN
 		";
+		
+		$query4 = "
+		SELECT A.NO_RESI AS RESI,
+		C.JASA_KURIR,C.LAYANAN_KURIR,
+		
+		";
+		
 
 		$sql1 = mysqli_query($db, $query1);
 		$sql2 = mysqli_query($db, $query2);
 		$sql3 = mysqli_query($db, $query3);
-
+		$sql4 = mysqli_query($db, $query4);
 		?>
 
 
@@ -188,7 +195,58 @@
 					  
 				  
 				  <h4 style="text-align:center">TEST</h4>
-				  <p style="text-align:center"><a href="./pegawai.php" class="btn btn-primary" role="button">Data Pegawai</a> <a href="#" class="btn btn-default" role="button">TEST</a></p>
+				  <p style="text-align:center"><a href="./pegawai.php" class="btn btn-primary" 
+				  role="button">Data Pegawai</a> 
+				  <a href="#" class="btn btn-default" role="button">TEST</a></p>
+
+				</div>
+			 </div>	
+		</div>
+        <p>
+		</p>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="column" style="width:auto; margin:auto;" >
+  <div class="col-sm-6 col-md-4" style="width:600px; ">
+    <div class="thumbnail">
+      <img src="./branding/client-2.jpg" alt="logos" style="width:90%;">
+      <div class="caption">
+        <h3 style="text-align:center">Report Pegawai</h3>
+		<div class="panel panel-default">
+  <div class="panel-heading"><h4 style="text-align:center">Status Pegawai</h4></div>
+  <div class="panel-body">
+  <table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+								<th>Jabatan</th>
+									<th>Jumlah Pegawai</th>
+									<th>Aktif</th>
+									<th>Nonaktif</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+							<?php foreach ($sql3 as $member) : ?>
+								<tr>
+									<td><?php echo $member['JABATAN']; ?></td>
+									<td><?php echo $member['TOTAL_PEGAWAI']; ?></td>
+									<td><?php echo $member['AKTIF']; ?></td>
+									<td><?php echo $member['NON_AKTIF']; ?></td>									
+								</tr>
+							<?php endforeach; ?>
+							</tbody>
+						</table>
+ 				 </div>
+				  <div class="panel-heading">
+					  
+				  
+				  <h4 style="text-align:center">TEST</h4>
+				  <p style="text-align:center"><a href="./pegawai.php" class="btn btn-primary" 
+				  role="button">Data Pegawai</a> 
+				  <a href="#" class="btn btn-default" role="button">TEST</a></p>
 
 				</div>
 			 </div>	

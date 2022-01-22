@@ -3,7 +3,18 @@
 require_once 'config/database.php';
 
 // ambil data dari database
-$query = "SELECT * from pengiriman ORDER BY ID_PEMBAYARAN LIMIT 99";
+$query = "SELECT A.NO_RESI,
+A.ID_PEGAWAI,
+A.ID_PEMBAYARAN,
+C.JASA_KURIR,
+C.LAYANAN_KURIR,
+A.TGL_PENGIRIMAN,
+A.STATUS_PENGIRIMAN
+FROM pengiriman A INNER JOIN pembayaran B
+ON A.ID_PEMBAYARAN=B.ID_PEMBAYARAN
+INNER JOIN pemesanan C 
+ON B.ID_PEMESANAN=C.ID_PEMESANAN
+ORDER BY ID_PEMBAYARAN LIMIT 99";
 $sql = mysqli_query($db, $query);
 ?>
 
@@ -68,6 +79,8 @@ $sql = mysqli_query($db, $query);
 									<th>NO_RESI</th>
 									<th>ID_PEGAWAI</th>
 									<th>ID_PEMBAYARAN</th>
+									<th>Jasa Kurir</th>
+									<th>Layanan Kurir</th>
 									<th>Tanggal</th>
 									<th>Status</th>
 									
@@ -79,6 +92,8 @@ $sql = mysqli_query($db, $query);
 									<td><?php echo $member['NO_RESI']; ?></td>
 									<td><?php echo $member['ID_PEGAWAI']; ?></td>
 									<td><?php echo $member['ID_PEMBAYARAN']; ?></td>
+									<td><?php echo $member['JASA_KURIR']; ?></td>
+									<td><?php echo $member['LAYANAN_KURIR']; ?></td>					
 									<td><?php echo $member['TGL_PENGIRIMAN']; ?></td>
 								    <td><?php $member['STATUS_PENGIRIMAN'];
 									if($member['STATUS_PENGIRIMAN']==1){
