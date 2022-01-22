@@ -39,9 +39,9 @@ $sql = mysqli_query($db, $query);
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="./">Dashboard<span class="sr-only">(current)</span></a></li>
-		<li><a href="./domba.php">Data Pemesanan</a></li>
-		<li><a href="./domba.php">Data Pembayaran</a></li>
-        <li><a href="./domba.php">Data Pengiriman</a></li>
+		<li><a href="./pemesanan.php">Data Pemesanan</a></li>
+		<li><a href="./pembayaran.php">Data Pembayaran</a></li>
+        <li><a href="./pengiriman.php">Data Pengiriman</a></li>
 
       </ul>
      

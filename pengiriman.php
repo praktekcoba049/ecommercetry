@@ -67,7 +67,7 @@ $sql = mysqli_query($db, $query);
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12">
 					<div class="text-center">
-						<h3>Data domba SIB2 grup</h3><hr>
+						<h3>Data Shipment SIB2 grup</h3><hr>
 						<p style="padding:10pt 0pt 0pt 10pt;">
 							<a href="pages/tambah_domba.php" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span> Tambah domba</a>
 						</p>

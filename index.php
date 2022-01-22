@@ -43,7 +43,7 @@
 		$sql1 = mysqli_query($db, $query1);
 		$sql2 = mysqli_query($db, $query2);
 		$sql3 = mysqli_query($db, $query3);
-		$sql4 = mysqli_query($db, $query4);
+		//$sql4 = mysqli_query($db, $query4);
 		?>
 
 
