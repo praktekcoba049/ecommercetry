@@ -3,10 +3,18 @@
 require_once 'config/database.php';
 
 // ambil data dari database
-$query = "SELECT A.ID_DOMBA,B.JENIS_DOMBA,A.JENIS_KELAMIN,A.HARGA,A.BERAT,A.STATUS_DOMBA
- FROM domba A join jenis_domba B 
- ON A.ID_JENIS=B.ID_JENIS
- ORDER BY harga ASC LIMIT 0, 99";
+$query = "SELECT A.ID_PEMBAYARAN,
+A.ID_PEMESANAN,
+A.ID_PEGAWAI,
+B.NAMA_PENERIMA,
+A.TGL_PEMBAYARAN,
+A.TOTAL_PEMBAYARAN,
+A.STATUS_PEMBAYARAN,
+A.NAMA_BANK,
+A.ATAS_NAMA
+ FROM pembayaran A join pemesanan B 
+ ON A.ID_PEMESANAN=B.ID_PEMESANAN
+ ORDER BY ID_PEMBAYARAN ASC LIMIT 0, 99";
 $sql = mysqli_query($db, $query);
 ?>
 
@@ -68,44 +76,34 @@ $sql = mysqli_query($db, $query);
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>ID_Domba</th>
-									<th>Jenis_Domba</th>
-									<th>Jenis_kelamin</th>
-									<th>Harga</th>
-									<th>Berat</th>
-									<th>Status</th>
-									<th>Aksi</th>
+									<th>ID_Pembayaran</th>
+									<th>ID_Pemesanan</th>
+									<th>ID_Pegawai</th>
+									<th>Nama Penerima</th>
+									<th>Tgl Pembayaran</th>
+									<th>Total Bayar</th>
+									<th>Status Bayar</th>
+									<th>Bank</th>
+									<th>Atas Nama</th>
 								</tr>
 							</thead>
 							<tbody>
 							<?php foreach ($sql as $member) : ?>
 								<tr>
-									<td><?php echo $member['ID_DOMBA']; ?></td>
-									<td><?php echo $member['JENIS_DOMBA']; ?></td>
-									<td><?php $member['JENIS_KELAMIN'];
-									if($member['JENIS_KELAMIN']==1){
-										echo "Betina";
-									}
-									else {
-										echo "Jantan";
-									}
+									<td><?php echo $member['ID_PEMBAYARAN']; ?></td>
+									<td><?php echo $member['ID_PEMESANAN']; ?></td>
 									
-									?></td>
-									<td><?php echo $member['HARGA']; ?></td>
-									<td><?php echo $member['BERAT']; ?></td>
-									<td><?php $member['STATUS_DOMBA'];
-									if($member['STATUS_DOMBA']==1){
-										echo "Sold";
-									}
-									else {
-										echo "Ready";
-									}
-
-									?></td>
+									<td><?php echo $member['ID_PEGAWAI']; ?></td>
+									<td><?php echo $member['NAMA_PENERIMA']; ?></td>
+									<td><?php echo $member['TGL_PEMBAYARAN']; ?></td>
+									<td><?php echo $member['TOTAL_PEMBAYARAN']; ?></td>
+									<td><?php echo $member['STATUS_PEMBAYARAN']; ?></td>
+									<td><?php echo $member['NAMA_BANK']; ?></td>
+									<td><?php echo $member['ATAS_NAMA']; ?></td>
 									<td>
-										<a href="pages/edit_domba.php?id=<?php echo $member['ID_DOMBA']; ?>
+										<a href="pages/edit_domba.php?id=<?php echo $member['ID_PEMBAYARAN']; ?>
 										" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
-										<a href="process/hapus_domba_proses.php?id=<?php echo $member['ID_DOMBA']; ?>
+										<a href="process/hapus_domba_proses.php?id=<?php echo $member['ID_PEMBAYARAN']; ?>
 										" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"> Hapus</span></a>
 									</td>
 								</tr>

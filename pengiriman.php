@@ -3,10 +3,7 @@
 require_once 'config/database.php';
 
 // ambil data dari database
-$query = "SELECT A.ID_DOMBA,B.JENIS_DOMBA,A.JENIS_KELAMIN,A.HARGA,A.BERAT,A.STATUS_DOMBA
- FROM domba A join jenis_domba B 
- ON A.ID_JENIS=B.ID_JENIS
- ORDER BY harga ASC LIMIT 0, 99";
+$query = "SELECT * from pengiriman ORDER BY ID_PEMBAYARAN LIMIT 99";
 $sql = mysqli_query($db, $query);
 ?>
 
@@ -68,44 +65,34 @@ $sql = mysqli_query($db, $query);
 						<table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-									<th>ID_Domba</th>
-									<th>Jenis_Domba</th>
-									<th>Jenis_kelamin</th>
-									<th>Harga</th>
-									<th>Berat</th>
+									<th>NO_RESI</th>
+									<th>ID_PEGAWAI</th>
+									<th>ID_PEMBAYARAN</th>
+									<th>Tanggal</th>
 									<th>Status</th>
-									<th>Aksi</th>
+									
 								</tr>
 							</thead>
 							<tbody>
 							<?php foreach ($sql as $member) : ?>
 								<tr>
-									<td><?php echo $member['ID_DOMBA']; ?></td>
-									<td><?php echo $member['JENIS_DOMBA']; ?></td>
-									<td><?php $member['JENIS_KELAMIN'];
-									if($member['JENIS_KELAMIN']==1){
-										echo "Betina";
+									<td><?php echo $member['NO_RESI']; ?></td>
+									<td><?php echo $member['ID_PEGAWAI']; ?></td>
+									<td><?php echo $member['ID_PEMBAYARAN']; ?></td>
+									<td><?php echo $member['TGL_PENGIRIMAN']; ?></td>
+								    <td><?php $member['STATUS_PENGIRIMAN'];
+									if($member['STATUS_PENGIRIMAN']==1){
+										echo "Terkirim";
 									}
 									else {
-										echo "Jantan";
-									}
-									
-									?></td>
-									<td><?php echo $member['HARGA']; ?></td>
-									<td><?php echo $member['BERAT']; ?></td>
-									<td><?php $member['STATUS_DOMBA'];
-									if($member['STATUS_DOMBA']==1){
-										echo "Sold";
-									}
-									else {
-										echo "Ready";
+										echo "Sedang Dalam Proses";
 									}
 
 									?></td>
 									<td>
-										<a href="pages/edit_domba.php?id=<?php echo $member['ID_DOMBA']; ?>
+										<a href="pages/edit_domba.php?id=<?php echo $member['NO_RESI']; ?>
 										" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
-										<a href="process/hapus_domba_proses.php?id=<?php echo $member['ID_DOMBA']; ?>
+										<a href="process/hapus_domba_proses.php?id=<?php echo $member['NO_RESI']; ?>
 										" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-trash"> Hapus</span></a>
 									</td>
 								</tr>

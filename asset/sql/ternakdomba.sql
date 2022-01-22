@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2022 at 02:58 PM
+-- Generation Time: Jan 22, 2022 at 06:27 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -59,7 +59,7 @@ INSERT INTO `domba` (`ID_DOMBA`, `ID_JENIS`, `JENIS_KELAMIN`, `HARGA`, `BERAT`, 
 ('DAG11', 'DAGRS', 0, '1200000', '29', '1'),
 ('DAG7', 'DAGRS', 1, '12400000', '24', '0'),
 ('DEG3', 'DEGES', 1, '9000000', '20', '0'),
-('DFK13', 'DMSFK', 1, '14000000', '29', '0'),
+('DFK13', 'DMSFK', 1, '14000000', '29', '1'),
 ('DFK6', 'DMSFK', 1, '12300000', '23', '0'),
 ('DRG10', 'DREGR', 0, '6700000', '15', '0'),
 ('DRG13', 'DREGR', 0, '5600000', '18', '0'),
@@ -717,7 +717,7 @@ CREATE TABLE `pegawai` (
 --
 
 INSERT INTO `pegawai` (`ID_PEGAWAI`, `NAMA_PEGAWAI`, `ALAMAT_PEGAWAI`, `KODEPOS_PEGAWAI`, `USERNAMEPEG`, `PASSWORDPEG`, `STATUS_PEGAWAI`) VALUES
-('PEG1', 'Gojo Satoru', 'Jl Otto Iskandardinata Raya 51', '13330', 'gsatoru', '12345', '0'),
+('PEG1', 'Gojo Satoru2', 'Jl Otto Iskandardinata Raya 51', '13330', 'gsatoru', '12345', '0'),
 ('PEG2', 'Itadori Yuuji', 'Jl Nipah Raya 25, DKI Jakarta', '12170', 'doriyuuji', '12345', '1'),
 ('PEG3', 'Fushiguro Megumi', 'Jl Ciumbuleuit 73, Jawa Barat', '40141', 'megumiro', '12345', '1'),
 ('PEG4', 'Kugisaki Nobara', 'Jl Agung Brt I Bl A-3/20-21, D', '14350', 'sakibara', '12345', '1'),
@@ -750,8 +750,22 @@ CREATE TABLE `pelanggan` (
   `TELP_PELANGGAN` varchar(13) NOT NULL,
   `ALAMAT_PELANGGAN` varchar(30) NOT NULL,
   `KODE_POS_PELANGGAN` char(5) NOT NULL,
-  `STATUS_PELANGGAN` char(1) NOT NULL
+  `STATUS_PELANGGAN` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Triggers `pelanggan`
+--
+DELIMITER $$
+CREATE TRIGGER `BEFORE_INSERT_PELANGGAN` BEFORE INSERT ON `pelanggan` FOR EACH ROW BEGIN 
+    DECLARE GGWP VARCHAR(10);
+    DECLARE NUMER INT;
+    SELECT COUNT(*) INTO NUMER FROM pelanggan;
+    	SET NEW.ID_PELANGGAN=CONCAT('CST',NUMER+1);
+        
+    END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -769,6 +783,45 @@ CREATE TABLE `pembayaran` (
   `NAMA_BANK` varchar(20) DEFAULT NULL,
   `ATAS_NAMA` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pembayaran`
+--
+
+INSERT INTO `pembayaran` (`ID_PEMBAYARAN`, `ID_PEGAWAI`, `ID_PEMESANAN`, `TGL_PEMBAYARAN`, `TOTAL_PEMBAYARAN`, `STATUS_PEMBAYARAN`, `NAMA_BANK`, `ATAS_NAMA`) VALUES
+('BYR1', 'PEG4', 'ORD4', '2022-01-22 05:09:52', '13450000', 'LUNAS', 'MARINEBANK', 'GARP'),
+('BYR2', 'PEG3', 'ORD5', '2022-01-22 05:09:52', '15340000', 'LUNAS', 'MARINEBANK', 'AKAINU');
+
+--
+-- Triggers `pembayaran`
+--
+DELIMITER $$
+CREATE TRIGGER `after_insert_pembayaran` AFTER INSERT ON `pembayaran` FOR EACH ROW BEGIN
+    DECLARE RESI VARCHAR(15);
+	DECLARE idpay VARCHAR(5);
+    DECLARE idpeg VARCHAR(5);
+	DECLARE numer INT;
+	select count(*) into numer from pengiriman;
+    select ID_PEMBAYARAN into idpay from pembayaran 
+    where ID_PEMBAYARAN=new.ID_PEMBAYARAN;
+    select ID_PEGAWAI into idpeg from pembayaran
+    where ID_PEMBAYARAN=NEW.ID_PEMBAYARAN;
+    
+		SET RESI=CONCAT('RES',idpay,idpeg,numer+1);	
+        INSERT INTO pengiriman VALUES (RESI,idpeg,idpay,CURRENT_TIMESTAMP,0);
+			
+	END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `before_insert_pembayaran` BEFORE INSERT ON `pembayaran` FOR EACH ROW BEGIN
+	DECLARE idpeg VARCHAR(10);
+	DECLARE numer INT;
+	select count(*) into numer from pembayaran;
+		SET NEW.ID_PEMBAYARAN = CONCAT('BYR',numer+1);	
+	END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -797,7 +850,11 @@ CREATE TABLE `pemesanan` (
 --
 
 INSERT INTO `pemesanan` (`ID_PEMESANAN`, `ID_PEGAWAI`, `ID_KOTA`, `NAMA_PENERIMA`, `ALAMAT_PENERIMA`, `KODE_POS_PENERIMA`, `JASA_KURIR`, `LAYANAN_KURIR`, `TGL_PESAN`, `JENIS_BAYAR`, `ONGKOS_KIRIM`, `TOTAL_HARGA`, `STATUS_TRANSAKSI`) VALUES
-('ORD1', 'PEG2', 'C1102', 'JACK SPARROW', 'Jl Gedong Panjang 9 B, Dki Jak', '11240', 'JNE', 'EXPRESS', '2022-01-14 12:14:33', 'TUNAI', '120000', '2500000', 'LUNAS');
+('ORD1', 'PEG2', 'C1102', 'JACK SPARROW', 'Jl Gedong Panjang 9 B, Dki Jak', '11240', 'JNE', 'EXPRESS', '2022-01-14 12:14:33', 'TUNAI', '120000', '2500000', 'LUNAS'),
+('ORD2', 'PEG2', 'C1102', 'RORONOA ZORRO', 'Grand line, East Blue N45,G3', '44456', 'Law Pirates', 'SUB EXPRESSO', '2022-01-22 04:35:39', 'CASH DIRECT TF', '56000', '145000000', 'ON PROGRESS'),
+('ORD3', 'PEG5', 'C1116', 'EICHIRO ODA', 'Tokyo, Shinsengumi Street N4, ', '22121', 'J-express', 'Ninja Stealth', '2022-01-22 04:35:39', 'CASH', '760000', '22670000', 'ON PROGRESS'),
+('ORD4', 'PEG4', 'C5371', 'Monkey D Garp', 'Marineford, Base OPS 3 S2', '99999', 'Dragon Pos', 'Dragon Express', '2022-01-22 04:35:39', 'CASH', '450000', '13450000', 'COMPLETE'),
+('ORD5', 'PEG3', 'C8201', 'Sakazuki Akainu', 'Marineford, Ultra Base, fl456', '55555', 'D&T', 'Magma Donat D ACE', '2022-01-22 04:35:39', 'CASH', '340000', '15340000', 'COMPLETE');
 
 --
 -- Triggers `pemesanan`
@@ -822,8 +879,16 @@ CREATE TABLE `pengiriman` (
   `ID_PEGAWAI` char(5) NOT NULL,
   `ID_PEMBAYARAN` char(5) NOT NULL,
   `TGL_PENGIRIMAN` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `STATUS_PENGIRMAN` decimal(1,0) NOT NULL
+  `STATUS_PENGIRIMAN` decimal(1,0) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengiriman`
+--
+
+INSERT INTO `pengiriman` (`NO_RESI`, `ID_PEGAWAI`, `ID_PEMBAYARAN`, `TGL_PENGIRIMAN`, `STATUS_PENGIRIMAN`) VALUES
+('RESBYR1PEG41', 'PEG4', 'BYR1', '2022-01-22 05:09:52', '0'),
+('RESBYR2PEG32', 'PEG3', 'BYR2', '2022-01-22 05:09:52', '0');
 
 -- --------------------------------------------------------
 
