@@ -6,6 +6,7 @@ require_once 'config/database.php';
 $query = "SELECT A.NO_RESI,
 A.ID_PEGAWAI,
 A.ID_PEMBAYARAN,
+C.NAMA_PENERIMA,
 C.JASA_KURIR,
 C.LAYANAN_KURIR,
 A.TGL_PENGIRIMAN,
@@ -79,6 +80,7 @@ $sql = mysqli_query($db, $query);
 									<th>NO_RESI</th>
 									<th>ID_PEGAWAI</th>
 									<th>ID_PEMBAYARAN</th>
+									<th>Penerima</th>
 									<th>Jasa Kurir</th>
 									<th>Layanan Kurir</th>
 									<th>Tanggal</th>
@@ -92,6 +94,7 @@ $sql = mysqli_query($db, $query);
 									<td><?php echo $member['NO_RESI']; ?></td>
 									<td><?php echo $member['ID_PEGAWAI']; ?></td>
 									<td><?php echo $member['ID_PEMBAYARAN']; ?></td>
+									<td><?php echo $member['NAMA_PENERIMA']; ?></td>
 									<td><?php echo $member['JASA_KURIR']; ?></td>
 									<td><?php echo $member['LAYANAN_KURIR']; ?></td>					
 									<td><?php echo $member['TGL_PENGIRIMAN']; ?></td>

@@ -34,8 +34,6 @@
 		";
 		
 		$query4 = "
-		SELECT A.NO_RESI AS RESI,
-		C.JASA_KURIR,C.LAYANAN_KURIR,
 		
 		";
 		
@@ -55,6 +53,10 @@
 		<link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
 
 		<title>Data Domba</title>
+		
+		
+	
+		
 	</head>
 	<body>
 
