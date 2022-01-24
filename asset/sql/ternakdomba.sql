@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2022 at 06:27 AM
+-- Generation Time: Jan 24, 2022 at 05:36 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -754,6 +754,17 @@ CREATE TABLE `pelanggan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `pelanggan`
+--
+
+INSERT INTO `pelanggan` (`ID_PELANGGAN`, `ID_PEMESANAN`, `ID_PEGAWAI`, `NAMA_PELANGGAN`, `TELP_PELANGGAN`, `ALAMAT_PELANGGAN`, `KODE_POS_PELANGGAN`, `STATUS_PELANGGAN`) VALUES
+('CST1', 'ORD1', 'PEG2', 'Jack Sparrow', '0982113', 'Jl Gedong Panjang 9 B, DKI Jkt', '11240', 1),
+('CST2', 'ORD2', 'PEG2', 'Roronoa Zorro', '43431322', 'Grand line, East Blue N45,G3', '44456', 1),
+('CST3', 'ORD3', 'PEG5', 'Eichiro Oda', '44633552', 'Tokyo, Shinsengumi Street N4, ', '22121', 1),
+('CST4', 'ORD4', 'PEG4', 'Monkey D Garp', '65463214', 'Marineford, Base OPS 3 S2', '99999', 1),
+('CST5', 'ORD5', 'PEG3', 'Sakazuki Akainu', '2245124', 'Marineford, Ultra Base, fl456', '55555', 1);
+
+--
 -- Triggers `pelanggan`
 --
 DELIMITER $$
@@ -850,7 +861,7 @@ CREATE TABLE `pemesanan` (
 --
 
 INSERT INTO `pemesanan` (`ID_PEMESANAN`, `ID_PEGAWAI`, `ID_KOTA`, `NAMA_PENERIMA`, `ALAMAT_PENERIMA`, `KODE_POS_PENERIMA`, `JASA_KURIR`, `LAYANAN_KURIR`, `TGL_PESAN`, `JENIS_BAYAR`, `ONGKOS_KIRIM`, `TOTAL_HARGA`, `STATUS_TRANSAKSI`) VALUES
-('ORD1', 'PEG2', 'C1102', 'JACK SPARROW', 'Jl Gedong Panjang 9 B, Dki Jak', '11240', 'JNE', 'EXPRESS', '2022-01-14 12:14:33', 'TUNAI', '120000', '2500000', 'LUNAS'),
+('ORD1', 'PEG2', 'C1102', 'JACK SPARROW', 'Jl Gedong Panjang 9 B, Dki Jak', '11240', 'JNE', 'EXPRESS', '2022-01-22 15:11:26', 'TUNAI', '120000', '2500000', 'ON PROGRESS'),
 ('ORD2', 'PEG2', 'C1102', 'RORONOA ZORRO', 'Grand line, East Blue N45,G3', '44456', 'Law Pirates', 'SUB EXPRESSO', '2022-01-22 04:35:39', 'CASH DIRECT TF', '56000', '145000000', 'ON PROGRESS'),
 ('ORD3', 'PEG5', 'C1116', 'EICHIRO ODA', 'Tokyo, Shinsengumi Street N4, ', '22121', 'J-express', 'Ninja Stealth', '2022-01-22 04:35:39', 'CASH', '760000', '22670000', 'ON PROGRESS'),
 ('ORD4', 'PEG4', 'C5371', 'Monkey D Garp', 'Marineford, Base OPS 3 S2', '99999', 'Dragon Pos', 'Dragon Express', '2022-01-22 04:35:39', 'CASH', '450000', '13450000', 'COMPLETE'),
@@ -888,7 +899,7 @@ CREATE TABLE `pengiriman` (
 
 INSERT INTO `pengiriman` (`NO_RESI`, `ID_PEGAWAI`, `ID_PEMBAYARAN`, `TGL_PENGIRIMAN`, `STATUS_PENGIRIMAN`) VALUES
 ('RESBYR1PEG41', 'PEG4', 'BYR1', '2022-01-22 05:09:52', '0'),
-('RESBYR2PEG32', 'PEG3', 'BYR2', '2022-01-22 05:09:52', '0');
+('RESBYR2PEG32', 'PEG3', 'BYR2', '2022-01-24 04:16:09', '1');
 
 -- --------------------------------------------------------
 

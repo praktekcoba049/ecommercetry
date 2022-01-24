@@ -18,6 +18,51 @@ $sql = mysqli_query($db, $query);
 		<link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
 
 		<title>Data Domba</title>
+		
+		<style>
+.dropbtn {
+  background-color: #4ca8af;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+</style>
+		
+		
+	
 	</head>
 	<body>
 
@@ -26,12 +71,7 @@ $sql = mysqli_query($db, $query);
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+      
       <a class="navbar-brand" href="#">PBD-SIB2 (Admin)</a>
     </div>
 
@@ -39,17 +79,29 @@ $sql = mysqli_query($db, $query);
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="active"><a href="./">Dashboard<span class="sr-only">(current)</span></a></li>
-		<li><a href="./pemesanan.php">Data Pemesanan</a></li>
-		<li><a href="./pembayaran.php">Data Pembayaran</a></li>
-        <li><a href="./pengiriman.php">Data Pengiriman</a></li>
+		<div class="dropdown">
+		<button class="dropbtn" style="margin-left:15px">Data Transaksi</button>
+		    <div class="dropdown-content">
+		
+				<li><a href="./pemesanan.php">Data Pemesanan</a></li>
+				<li><a href="./pembayaran.php">Data Pembayaran</a></li>
+				<li><a href="./pengiriman.php">Data Pengiriman</a></li>
+			</div>
+		</div>
+		
+		<div class="dropdown">
+		<button class="dropbtn" style="margin-left:15px">Data Transaksi</button>
+		    <div class="dropdown-content">
+				<li><a href="./domba.php">Data Domba</a></li>
+				<li><a href="./pegawai.php">Data Pegawai</a></li>
+				<li><a href="./domba.php">Data Pelanggan</a></li>
+			</div>
+		</div>
 
       </ul>
      
       <ul class="nav navbar-nav navbar-right">
-	  <li><a href="./domba.php">Data Domba</a></li>
-	  <li><a href="./pegawai.php">Data Pegawai</a></li>
-	  <li><a href="./domba.php">Data Pelanggan</a></li>
-
+	 
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
