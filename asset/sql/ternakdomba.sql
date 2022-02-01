@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2022 at 05:36 AM
+-- Generation Time: Feb 01, 2022 at 04:11 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -63,6 +63,7 @@ INSERT INTO `domba` (`ID_DOMBA`, `ID_JENIS`, `JENIS_KELAMIN`, `HARGA`, `BERAT`, 
 ('DFK6', 'DMSFK', 1, '12300000', '23', '0'),
 ('DRG10', 'DREGR', 0, '6700000', '15', '0'),
 ('DRG13', 'DREGR', 0, '5600000', '18', '0'),
+('DRG14', 'DREGR', 0, '0', '0', ''),
 ('DRG8', 'DREGR', 0, '9000000', '21', '0'),
 ('DRG9', 'DREGR', 1, '12000000', '25', '0'),
 ('DRN5', 'DMRNO', 0, '7900000', '21', '0'),
@@ -865,7 +866,8 @@ INSERT INTO `pemesanan` (`ID_PEMESANAN`, `ID_PEGAWAI`, `ID_KOTA`, `NAMA_PENERIMA
 ('ORD2', 'PEG2', 'C1102', 'RORONOA ZORRO', 'Grand line, East Blue N45,G3', '44456', 'Law Pirates', 'SUB EXPRESSO', '2022-01-22 04:35:39', 'CASH DIRECT TF', '56000', '145000000', 'ON PROGRESS'),
 ('ORD3', 'PEG5', 'C1116', 'EICHIRO ODA', 'Tokyo, Shinsengumi Street N4, ', '22121', 'J-express', 'Ninja Stealth', '2022-01-22 04:35:39', 'CASH', '760000', '22670000', 'ON PROGRESS'),
 ('ORD4', 'PEG4', 'C5371', 'Monkey D Garp', 'Marineford, Base OPS 3 S2', '99999', 'Dragon Pos', 'Dragon Express', '2022-01-22 04:35:39', 'CASH', '450000', '13450000', 'COMPLETE'),
-('ORD5', 'PEG3', 'C8201', 'Sakazuki Akainu', 'Marineford, Ultra Base, fl456', '55555', 'D&T', 'Magma Donat D ACE', '2022-01-22 04:35:39', 'CASH', '340000', '15340000', 'COMPLETE');
+('ORD5', 'PEG3', 'C8201', 'Sakazuki Akainu', 'Marineford, Ultra Base, fl456', '55555', 'D&T', 'Magma Donat D ACE', '2022-01-22 04:35:39', 'CASH', '340000', '15340000', 'COMPLETE'),
+('ORD6', 'PEG2', 'C1221', 'BORSALINO KIZARU', 'JL MARINEFORD ADMIRAL SET2', '65472', 'MARINE DELIVERY', 'MARINE EXPRESS', '2021-11-15 18:13:00', 'KIZARU', '234000', '7845000', 'ON PROGRESS');
 
 --
 -- Triggers `pemesanan`

@@ -138,7 +138,7 @@ $sql = mysqli_query($db, $query);
 					<div class="text-center">
 						<h3>Data Pemesanan SIB2 grup</h3><hr>
 						<p style="padding:10pt 0pt 0pt 10pt;">
-							<a href="pages/tambah_domba.php" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span> TEST </a>
+							<a href="pages/tambah_pemesanan.php" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-plus"></span> TEST </a>
 						</p>
 					</div>
 					<div class="table-responsive">

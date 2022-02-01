@@ -226,7 +226,7 @@
   <table class="table table-striped table-bordered">
 							<thead>
 								<tr>
-								<th>Jabatan</th>
+									<th>Jabatan</th>
 									<th>Jumlah Pegawai</th>
 									<th>Aktif</th>
 									<th>Nonaktif</th>
@@ -307,15 +307,6 @@
       </div>
     </div>
   </div>
-
-
-
-  
-
-
-
-  
-
 
 
 		    </div>
